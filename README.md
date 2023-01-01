@@ -15,3 +15,8 @@ Let op: De per-groep data komt uiteraard niet uit de P1 meter, hier heb ik losse
 ## Belgie
 
 In belgie is wellicht een wijziging noodzakelijk voor de gasmeter: https://github.com/psy0rz/p1_dsmr_to_influxdb/issues/5#issuecomment-1231551648
+
+Additional Python3 libraries:
+
+- sudo apt install python3-pip
+- sudo pip3 install dsmr_parser influxdb

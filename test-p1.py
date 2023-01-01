@@ -12,8 +12,8 @@ import time
 prev_gas=None
 while True:
     try:
-        ## Influx DB settings
-        db = InfluxDBClient(config.host,config.port, config.username, config.password, config.database, ssl=True, verify_ssl=True)
+        ## Influx db settings
+#        db = InfluxDBClient(config.host,config.port, config.username, config.password, config.database, ssl=True)
 
         ## Serial port settings and version
         serial_reader = SerialReader(
@@ -22,13 +22,8 @@ while True:
             telegram_specification=telegram_specifications.V4
         )
 
-        print("Connecting db")
-#        db.create_database('energy')
-
-
         ## Read telegrams
         print("Waiting for P1 port measurement..")
-
 
         for telegram in serial_reader.read():
             influx_measurement={
@@ -55,7 +50,7 @@ while True:
 
                     ## Filter out failure log entries
                     if name!="POWER_EVENT_FAILURE_LOG": 
-                    ## is it a number?
+                    ## Is it a number?
                         if isinstance(value.value, int) or isinstance(value.value, decimal.Decimal):
                             nr=float(value.value)
                             ## Filter duplicates gas , since its hourly. (we want to be able to differentiate it, duplicate values confuse that)
@@ -68,8 +63,6 @@ while True:
 
 
             pprint.pprint(influx_measurement)
-            if len(influx_measurement['fields']):
-                db.write_points([influx_measurement])
     except Exception as e:
         print(str(e))
         print("Pausing and restarting...")
