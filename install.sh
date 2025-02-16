@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ## Create virtual Python environment, as this is needed since Debian Bookworm
+sudo apt install python3-full
 python3 -m venv .
 bin/pip install influxdb
 bin/pip install dsmr-parser

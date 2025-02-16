@@ -2,3 +2,8 @@
 __pycache__/*
 
 config.py
+
+## Ignore any Python virtual environment folder
+bin/
+lib/
+include/
