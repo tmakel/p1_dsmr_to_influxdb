@@ -1,0 +1,17 @@
+[Unit]
+Description = P1 DSMR to InfluxDB service
+After = network.target
+ 
+[Service]
+Type = simple
+ExecStart = /home/pi/scripts/p1_dsmr_to_influxdb/bin/python3 p1_to_influxdb.py
+WorkingDirectory = /home/pi/scripts/p1_dsmr_to_influxdb
+User = pi
+Group = pi
+Restart = on-failure
+SyslogIdentifier = p1_to_influxdb
+RestartSec = 5
+TimeoutStartSec = infinity
+ 
+[Install]
+WantedBy = multi-user.target
